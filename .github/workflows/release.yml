@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
@@ -53,7 +53,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm run version
+          version: pnpm run changeset:version
           commit: "chore: Update version for release"
           title: "chore: Update version for release"
           publish: pnpm run release
@@ -74,12 +74,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version-file: ".nvmrc"
           cache: "pnpm"
 
       - id: find_package_version
